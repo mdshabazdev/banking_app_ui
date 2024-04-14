@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-main-component',
@@ -15,7 +16,7 @@ export class MainComponentComponent {
   isCollapsed = true;
 
 
-  constructor(private observer: BreakpointObserver, private router: Router) {}
+  constructor(private observer: BreakpointObserver, private router: Router, private tokenService: TokenService) {}
 
   ngOnInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
@@ -38,7 +39,7 @@ export class MainComponentComponent {
   }
 
   logout() {
-    localStorage.clear();
+    this.tokenService.setToken('');
     this.router.navigate(['/auth/login']);
   }
 }

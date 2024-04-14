@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ServiceUtil } from '../../services/service-util';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   isSubmitting: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private snackBar: MatSnackBar, private serviceUtil: ServiceUtil) {
+  constructor(private fb: FormBuilder, private router: Router, private snackBar: MatSnackBar, private serviceUtil: ServiceUtil, private tokenService: TokenService) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -35,7 +36,7 @@ export class LoginComponent {
     this.serviceUtil.request('post', '/auth/authenticate', null, body)
     .then((data) => {
       if(data.token) {
-        localStorage.setItem('token',data.token);
+        this.tokenService.setToken(data.token);
         this.router.navigate(['']);
       } else if (data.error) {
         this.snackBar.open("Bad credentials", 'Close',{duration: 3000});

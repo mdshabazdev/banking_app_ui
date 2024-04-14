@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { TokenService } from "./token.service";
 
 const base='http://localhost:3000';
 
@@ -7,11 +8,12 @@ const base='http://localhost:3000';
     providedIn: 'root'
 })
 export class ServiceUtil {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private tokenService: TokenService) {}
 
     public async request(method: string, url: string, headers?:any, data:any = {}, responseType?: any) {
-        if(localStorage.getItem('token')) {
-            headers = {...headers, ...{Authorization: `Bearer ${localStorage.getItem('token')}`}};
+        const token = this.tokenService.getToken();
+        if(token) {
+            headers = {...headers, ...{Authorization: `Bearer ${token}`}};
         }
         const result = this.http.request(method, `${base}/api${url}`, {
             body: data,
