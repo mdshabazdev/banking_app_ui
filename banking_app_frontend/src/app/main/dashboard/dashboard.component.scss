@@ -1,0 +1,19 @@
+.mat-mdc-card-header {
+    padding: 0px 16px 16px;
+}
+
+.mdc-card__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        margin: 0px 10px 0px 10px;
+        width: 100px;
+    }
+}
+
+.table-container {
+    max-height: 450px;
+    overflow: auto;
+}

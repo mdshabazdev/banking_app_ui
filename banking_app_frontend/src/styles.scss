@@ -2,3 +2,48 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.auth-container{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+
+.main-container{
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    height: 100%;
+}
+
+
+mat-card {
+    padding: 50px;
+    border-radius: 25px !important;
+}
+
+.main-card-width {
+    width: 500px;
+}
+
+.dash-card-width {
+    width: 700px;
+}
+
+.mat-mdc-form-field {
+    width: 100%;
+}
+
+.mat-mdc-row:nth-child(even){
+        background-color: rgb(255,255,255);
+}
+
+.mat-mdc-row:nth-child(odd){
+    background-color: rgb(246,246,246);
+}
+
+.mat-mdc-header-row {
+    background-color: rgb(207 236 255);
+}
+

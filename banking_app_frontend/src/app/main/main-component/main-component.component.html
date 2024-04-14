@@ -2,13 +2,10 @@
     <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+    <span class="app-heading">Banking Application</span>
+    <span class="spacer"></span>
+    <button mat-icon-button class="example-icon" (click)="logout()">
+      <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
   <mat-sidenav-container autosize>
@@ -22,26 +19,31 @@
        </a>
        <a mat-list-item>
         <span class="entry" routerLink="withdraw">
-           <mat-icon>house</mat-icon>
+           <mat-icon>upload</mat-icon>
            <span *ngIf="!isCollapsed">Withdraw</span>
         </span>
      </a>
      <a mat-list-item>
         <span class="entry" routerLink="deposit">
-           <mat-icon>house</mat-icon>
+           <mat-icon>download</mat-icon>
            <span *ngIf="!isCollapsed">Deposit</span>
         </span>
      </a>
      <a mat-list-item>
         <span class="entry" routerLink="send">
-           <mat-icon>house</mat-icon>
+           <mat-icon>send</mat-icon>
            <span *ngIf="!isCollapsed">Send Money</span>
+        </span>
+     </a>
+     <a mat-list-item>
+        <span class="entry" routerLink="createAccount">
+           <mat-icon>person_add</mat-icon>
+           <span *ngIf="!isCollapsed">Create Account</span>
         </span>
      </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <h2>Content</h2>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

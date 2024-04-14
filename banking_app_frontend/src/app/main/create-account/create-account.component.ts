@@ -5,40 +5,31 @@ import { Router } from '@angular/router';
 import { ServiceUtil } from '../../services/service-util';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  selector: 'app-create-account',
+  templateUrl: './create-account.component.html',
+  styleUrl: './create-account.component.scss'
 })
-export class LoginComponent {
-  hide: boolean = true;
-  loginForm: FormGroup;
+export class CreateAccountComponent {
+  createAccountForm: FormGroup;
+  accountTypes = ['Savings', 'Current'];
   isSubmitting: boolean = false;
 
   constructor(private fb: FormBuilder, private router: Router, private snackBar: MatSnackBar, private serviceUtil: ServiceUtil) {
-    this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+    this.createAccountForm = this.fb.group({
+      accountType: ['', Validators.required]
     })
   }
 
-  navigateRegister() {
-    this.router.navigate(['auth/register']);
-  }
-
-  authenticate() {
-    const body = {
-      username: this.loginForm.controls["username"].value,
-      password: this.loginForm.controls["password"].value
-    };
-
+  submit() {
+    const accountId = this.createAccountForm.controls["accountType"].value;
     this.isSubmitting = true;
-    this.serviceUtil.request('post', '/auth/authenticate', null, body)
+    this.serviceUtil.request('post', `/account/createAccount/${accountId}`, null, null)
     .then((data) => {
-      if(data.token) {
-        localStorage.setItem('token',data.token);
-        this.router.navigate(['']);
+      if(data.message) {
+        this.snackBar.open(data.message, 'Close',{duration: 6000});
+        this.createAccountForm.reset();
       } else if (data.error) {
-        this.snackBar.open("Bad credentials", 'Close',{duration: 3000});
+        this.snackBar.open(data.error.message, 'Close',{duration: 3000});
       }else {
         this.snackBar.open(data, 'Close',{duration: 3000});
       }

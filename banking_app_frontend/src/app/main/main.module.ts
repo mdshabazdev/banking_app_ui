@@ -12,7 +12,17 @@ import { RouterModule } from '@angular/router';
 import { DepositComponent } from './deposit/deposit.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { SendMoneyComponent } from './send-money/send-money.component';
-
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button'
+import { MatSelectModule } from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +30,8 @@ import { SendMoneyComponent } from './send-money/send-money.component';
     DashboardComponent,
     DepositComponent,
     WithdrawComponent,
-    SendMoneyComponent],
+    SendMoneyComponent,
+    CreateAccountComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -28,7 +39,18 @@ import { SendMoneyComponent } from './send-money/send-money.component';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    MatCardModule,
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatSnackBarModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   exports: [
     MainComponentComponent,

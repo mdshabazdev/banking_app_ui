@@ -2,7 +2,9 @@ import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as fs from 'fs';
-// import { auth as auth} from './src/services/authentication.service';
+import { auth as auth} from './src/services/authentication.service';
+import { account as account} from './src/services/account.service';
+import { transaction as transaction} from './src/services/transaction.service';
 
 const port = 3000;
 
@@ -10,15 +12,17 @@ const root = path.join(__dirname, 'banking_app_frontend', 'dist', 'banking_app_f
 
 const app = express()
     .use(express.static(root))
-    .use(bodyParser.json());
-    // .use(auth);
+    .use(bodyParser.json())
+    .use(auth)
+    .use(account)
+    .use(transaction);
 
 app.get('*', (req, res) => {
     fs.stat(root + req.path, function(err){
         if(err){
-            res.send("index.html", { root });
+            res.sendFile("index.html", { root });
         } else {
-            res.send(req.path, { root })
+            res.sendFile(req.path, { root });
         }
     })
   

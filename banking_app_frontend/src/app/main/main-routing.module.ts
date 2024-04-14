@@ -5,6 +5,7 @@ import { MainComponentComponent } from '../main/main-component/main-component.co
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { SendMoneyComponent } from './send-money/send-money.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,9 @@ const routes: Routes = [
       },
       {
         path: 'send', component: SendMoneyComponent
+      },
+      {
+        path: 'createAccount', component: CreateAccountComponent
       }
     ]
   }];

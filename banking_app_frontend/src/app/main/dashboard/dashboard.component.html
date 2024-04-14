@@ -1,1 +1,62 @@
-<p>dashboard works!</p>
+<div class="main-container">
+    <!-- <div class="row">
+        <div class="col-md-12 col-sm-12"> -->
+    <mat-card class="dash-card-width">
+        <mat-card-header>
+            <mat-card-title>Dashboard</mat-card-title>
+            <mat-card-subtitle>Account Balance</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="accountForm">
+                <mat-form-field appearance="outline">
+                    <mat-label>Account Id</mat-label>
+                    <mat-select formControlName="accountId" (selectionChange)="accountSelected($event.value)">
+                        <mat-option *ngFor="let acc of accountIds" [value]="acc">
+                            {{ acc }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+            <strong>Available Balance: </strong><span>&#8377; {{ balance }}&emsp;</span><strong>&emsp;Account Type: </strong><span>{{ getAccountType() }}</span>
+            <div *ngIf="!isSubmitting && dataSource.data.length != 0">
+                <pre></pre>
+                <h2>Transactions for the account</h2>
+                <div class="table-container">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+                        <ng-container matColumnDef="transactionId">
+                            <th mat-header-cell *matHeaderCellDef>Transaction Id</th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction.transactionId}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="timestamp">
+                            <th mat-header-cell *matHeaderCellDef>Timestamp</th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction.timestamp}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="transactionType">
+                            <th mat-header-cell *matHeaderCellDef>Transaction Type</th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction.transactionType}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="amount">
+                            <th mat-header-cell *matHeaderCellDef>Amount</th>
+                            <td mat-cell *matCellDef="let transaction"> {{transaction.amount}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns;  sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+                <mat-paginator showFirstLastButtons [length]="pageObject.total"
+                    [pageSizeOptions]="pageObject.pageOptions" [pageSize]="pageObject.recordsPerPage"
+                    [pageIndex]="pageObject.pageIndex" aria-label="Select page" (page)="getPage($event)">
+                </mat-paginator>
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+            <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" color="primary"></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
+    <!-- </div>
+    </div> -->
+</div>
